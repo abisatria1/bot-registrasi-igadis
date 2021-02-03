@@ -25,7 +25,7 @@ const user = {
 
 const runBot = async (task) => {
   browser = await puppeteer.launch({
-    headless: false,
+    headless: process.env.HEADLESS,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   })
   task.doTask(browser)
