@@ -162,4 +162,14 @@ const chooseCollegeSubjectTask = {
   },
 }
 
-runBot(chooseCollegeSubjectTask)
+const express = require("express")
+const app = express()
+const port = process.env.PORT || 3000
+
+app.get("/", async (req, res, next) => {
+  await runBot(chooseCollegeSubjectTask)
+})
+
+app.listen(port, () => {
+  console.log(`app is on ${port}`)
+})
