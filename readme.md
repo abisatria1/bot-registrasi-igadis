@@ -12,3 +12,4 @@
    - MATKUL_DROP_NAMA (string)
 4. Jalankan command `npm install` untuk menginstall depedencies
 5. Jalankan command `npm run prod` untuk menjalankan app
+6. Buka browser localhost:3000
