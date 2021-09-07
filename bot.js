@@ -73,6 +73,9 @@ const chooseCollegeSubjectTask = {
         })
 
         console.log("opening subject list tabs")
+        await page.waitForSelector(
+          `a[href="#ui-tabs-${user.matkulAmbil.tingkat}"]`
+        )
         await page.click(`a[href="#ui-tabs-${user.matkulAmbil.tingkat}"]`)
         console.log("waiting for subject row")
         await page.waitForSelector(
@@ -160,10 +163,10 @@ const chooseCollegeSubjectTask = {
           console.log("\x1b[32m%s\x1b[0m", string)
         }
       }
-      // browser.close()
+      browser.close()
     } catch (error) {
       console.log(error)
-      // browser.close()
+      browser.close()
     }
   },
 }
