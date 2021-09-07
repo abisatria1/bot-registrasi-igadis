@@ -80,7 +80,7 @@ const chooseCollegeSubjectTask = {
         )
         console.log("droping and insert subject if exist")
         isFull = await page.evaluate(async (user) => {
-          return await new Promise(async (resolve, reject) => {
+          return await new Promise(async (resolve) => {
             // <-- return the data to node.js from browser
             let input,
               isFull = false
