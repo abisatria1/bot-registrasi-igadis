@@ -80,14 +80,15 @@ const chooseCollegeSubjectTask = {
         )
         console.log("droping and insert subject if exist")
         isFull = await page.evaluate(async (user) => {
-          return await new Promise(async (resolve) => {
+          return await new Promise(async (resolve, reject) => {
             // <-- return the data to node.js from browser
             let input,
               isFull = false
             $(`div#ui-tabs-${user.matkulAmbil.tingkat}`)
-              .find("tr")
+              .find("#table2 tr")
               .has(`td:contains(${user.matkulAmbil.namaMatkul})`)
               .each((idx, item) => {
+                // mencari data mata kuliah pada tab
                 const search = $(item).find(
                   `td:contains(${user.matkulAmbil.kelasMatkul})`
                 )
@@ -103,21 +104,26 @@ const chooseCollegeSubjectTask = {
 
             if (!isFull) {
               input.attr("checked", true)
-              // delete matkul pada mata kuliah diambil
-              $(`#table_wrapper_registration > table`)
-                .find(`td:contains(${user.matkulDrop.namaMatkul})`)
-                .parent("tr")
-                .find("input")
-                .attr("checked", true)
-              $("#deleteTakenCourse").click()
-              await new Promise((resolve) => {
-                setTimeout(resolve, 3000)
-              })
-              $("span.ui-icon-closethick").each((i, item) => $(item).click())
+              if (
+                user.matkulDrop.namaMatkul != "" &&
+                user.matkulDrop.namaMatkul
+              ) {
+                // delete matkul pada mata kuliah diambil
+                $(`#table_wrapper_registration > table`)
+                  .find(`td:contains(${user.matkulDrop.namaMatkul})`)
+                  .parent("tr")
+                  .find("input")
+                  .attr("checked", true)
+                $("#deleteTakenCourse").click()
+                await new Promise((resolve) => {
+                  setTimeout(resolve, 3000)
+                })
+                $("span.ui-icon-closethick").each((i, item) => $(item).click())
+              }
 
               // check ulang
               $(`div#ui-tabs-${user.matkulAmbil.tingkat}`)
-                .find("tr")
+                .find("#table2 tr")
                 .has(`td:contains(${user.matkulAmbil.namaMatkul})`)
                 .each((idx, item) => {
                   const search = $(item).find(
@@ -154,10 +160,10 @@ const chooseCollegeSubjectTask = {
           console.log("\x1b[32m%s\x1b[0m", string)
         }
       }
-      browser.close()
+      // browser.close()
     } catch (error) {
       console.log(error)
-      browser.close()
+      // browser.close()
     }
   },
 }
