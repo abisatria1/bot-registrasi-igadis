@@ -9,7 +9,7 @@
    - MATKUL_AMBIL_TINGKAT (number[1,2,3,4])
    - MATKUL_AMBIL_NAMA (string)
    - MATKUL_AMBIL_KELAS (string)
-   - MATKUL_DROP_NAMA (string)
+   - MATKUL_DROP_NAMA (string) (jika ingin drop mata kuliah / ganti kelas, jika tidak ingin drop maka kosongkan)
 4. Jalankan command `npm install` untuk menginstall depedencies
 5. Jalankan command `npm run prod` untuk menjalankan app
 6. Buka browser localhost:3000
